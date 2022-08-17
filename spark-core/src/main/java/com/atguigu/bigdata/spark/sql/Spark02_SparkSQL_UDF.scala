@@ -34,12 +34,6 @@ object Spark02_SparkSQL_UDF {
 
 
 
-
-
-
-
-
-
     //tudo关闭环境
     spark.close()
 

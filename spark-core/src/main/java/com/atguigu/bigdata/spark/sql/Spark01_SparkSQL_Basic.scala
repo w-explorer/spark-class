@@ -46,10 +46,13 @@ object Spark01_SparkSQL_Basic {
     val ds: Dataset[Int] = seq.toDS()
     ds.show()
 
+    val caseClassDS = Seq(Person("zhangsan",2)).toDS()
+    caseClassDS.show()
+
 
     //RDD <=> DataFrame
     val personRDD: RDD[(String, Int)] = spark.sparkContext.makeRDD(List(("zhangsan", 3), ("lisi", 3)))
-    val df: DataFrame = personRDD.toDF("name", "id")
+    val df: DataFrame = personRDD.toDF("name", "age")
     val perRdd: RDD[Row] = df.rdd
 
     //DataFrame <=> DataSet
@@ -60,7 +63,7 @@ object Spark01_SparkSQL_Basic {
     //RDD <=> DataSet
     val personRdd: RDD[Person] = spark.sparkContext.makeRDD(List(Person("zhangsan", 3), Person("lisi", 3)))
     val perDS: Dataset[Person] = personRdd.toDS()
-    perDS.rdd
+    val rdd: RDD[Person] = perDS.rdd
     //tudo关闭环境
     spark.close()
 

@@ -43,7 +43,7 @@ object Spark04_SparkSQL_JDBC {
     val df: DataFrame = spark.read.jdbc("jdbc:mysql://10.0.8.104:53302/104test", "student", props)
     df.show
 
-    df.write.mode(SaveMode.Append).jdbc("jdbc:mysql://10.0.8.104:53302/104test", "student1", props)
+    df.write.mode(SaveMode.ErrorIfExists).jdbc("jdbc:mysql://10.0.8.104:53302/104test", "student1", props)
 
 
 
